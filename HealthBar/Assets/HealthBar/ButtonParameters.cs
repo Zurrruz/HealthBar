@@ -7,10 +7,15 @@ public abstract class ButtonParameters : MonoBehaviour
     [SerializeField] protected int Value;
     [SerializeField] protected Button Button;
 
-    private void Awake()
+    private void OnEnable()
     {
         Button.onClick.AddListener(Press);
     }
-    
+
+    private void OnDisable()
+    {
+        Button.onClick.RemoveListener(Press);
+    }
+
     public abstract void Press();
 }

@@ -8,12 +8,13 @@ public class HealthTextDisplay : HealthDisplay
 
     private void Start()
     {
+        _maxValue.text = "/ " + Health.MaxValue.ToString();
+
         Show();
     }
 
     public override void Show()
     {
-        _currentValue.text = Health.CurrentValue.ToString();
-        _maxValue.text = "/ " + Health.MaxValue.ToString();
+        _currentValue.text = Health.CurrentValue.ToString();        
     }
 }

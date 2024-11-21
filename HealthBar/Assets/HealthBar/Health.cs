@@ -19,23 +19,27 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (damage > 0)
+        {
             CurrentValue -= damage;
 
-        CurrentValue = Convert.ToInt32(Mathf.Clamp(CurrentValue, _minValue, MaxValue));
+            CurrentValue = Convert.ToInt32(Mathf.Clamp(CurrentValue, _minValue, MaxValue));
 
-        InformZeroValue();
+            InformZeroValue();
 
-        Changed?.Invoke();
+            Changed?.Invoke();
+        }
     }
 
     public void Restore(int value)
     {
         if (value > 0)
+        {
             CurrentValue += value;
 
-        CurrentValue = Convert.ToInt32(Mathf.Clamp(CurrentValue, _minValue, MaxValue));
+            CurrentValue = Convert.ToInt32(Mathf.Clamp(CurrentValue, _minValue, MaxValue));
 
-        Changed?.Invoke();
+            Changed?.Invoke();
+        }
     }
 
     private void InformZeroValue()

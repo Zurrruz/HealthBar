@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class SmoothHealthBar : HealthBar
 {
-    private float _step = 0.5f;
-
     private Coroutine _coroutine;
+
+    private float _speedSlider = 3f;
 
     public override void Show()
     {
@@ -18,10 +18,17 @@ public class SmoothHealthBar : HealthBar
 
     private IEnumerator Change()
     {
-        while (Slider.value != Health.CurrentValue / Health.MaxValue)
+        float target = Health.CurrentValue / Health.MaxValue;
+        float startValue = Slider.value;
+        float step = 0;
+
+        while (Slider.value != target)
         {
-            Slider.value = Mathf.MoveTowards(Slider.value, Health.CurrentValue / Health.MaxValue, _step * Time.deltaTime);
+            Slider.value = Mathf.Lerp(startValue, target , step);
+
             yield return null;
+
+            step += _speedSlider * Time.deltaTime;
         }
     }
 }
